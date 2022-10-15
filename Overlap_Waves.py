@@ -5,7 +5,6 @@ import plotly_express as px
 
 st.set_page_config(layout="wide")
 
-
 plot = px.line(x=[0],y=[0],labels={"x":"t (s)","y":"u (cm)"})
 
 t_i = 0; dt = 0.01; t_f = 20
@@ -38,6 +37,7 @@ with st.sidebar:
     st.title("Overlap Waves")
     st.write("**Developed by:** Ludwig Cano")
     st.write("---")
+    st.write("Turn on the checkbox for adding a new wave.")
     Y = AgregarOnda(" ","T (s):","A (cm):","ϕ (deg):",t_set)
 
 plot.add_scatter(x=t_set,y=Y,mode="lines",name=f"sismo")
