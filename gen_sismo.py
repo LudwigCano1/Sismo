@@ -35,7 +35,7 @@ def AgregarOnda(lab,Tlabel,Alabel,philabel,t_Set):
     return vDesp + nnn
     
 with st.sidebar:
-    st.title("Superponer Ondas")
+    st.title("Overlap Waves")
     st.write("**Developed by:** Ludwig Cano")
     st.write("---")
     Y = AgregarOnda(" ","T (s):","A (cm):","ϕ (deg):",t_set)
