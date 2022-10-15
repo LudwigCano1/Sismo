@@ -21,8 +21,8 @@ def GenerarDesplazamiento(omega,A,phi,set_t):
 def AgregarOnda(lab,Tlabel,Alabel,philabel,t_Set):
     c2,c3,c4,c1 = st.columns([3,3,3,1])
     with c1: a = st.checkbox(label=lab)
-    with c2: T = st.number_input(Tlabel,min_value=0.0,max_value=10.0,value=1.0,step=0.1)
-    with c3: A = st.number_input(Alabel,min_value=0.0,max_value=15.0,step=0.1)
+    with c2: T = st.number_input(Tlabel,min_value=0.0,max_value=10.0,value=2.0,step=0.1)
+    with c3: A = st.number_input(Alabel,min_value=0.0,max_value=15.0,value=2.0,step=0.1)
     with c4: phi = st.number_input(philabel,min_value=0,max_value=180,step=1)/180 * m.pi
     vDesp = GenerarDesplazamiento(2*m.pi/T,A,phi,t_Set)
     nnn = np.zeros(int((t_f-t_i)/dt))
