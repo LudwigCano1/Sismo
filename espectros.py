@@ -83,7 +83,7 @@ st.latex(r"""\begin{split}
 \frac{Z.U.S}{R}g = \frac{(%.2f)(%.2f)(%.2f)}{(%.2f)}9.81=%.2f\ m/s^2
 \end{split}"""%(Z,U,S,R,Z*U*S*9.81/R))
 
-T1,T2,T3,T4 = st.tabs(["[ C ]","[ Sa ]","[ Sv ]","[ Sd ]"])
+T1,T2,T3,T4,T5 = st.tabs(["[ C ]","[ Sa ]","[ Sv ]","[ Sd ]","[ Sd vs Sa ]"])
 
 with T1:
     plot_C = px.line(x=[0],y=[0],labels={"x":"T (s)","y":"C"})
@@ -120,3 +120,16 @@ with T4:
     plot_Sd.add_scatter(x=[Tp,Tp],y=[0,1.1*max(Sd)],mode="lines",line={"dash":"dash"},name="Tp")
     plot_Sd.add_scatter(x=[Tl,Tl],y=[0,1.1*max(Sd)],mode="lines",line={"dash":"dash"},name="Tl")
     st.plotly_chart(plot_Sd,use_container_width=True)
+
+with T5:
+    plot_Sd_Sa = px.line(x=[0],y=[0],labels={"x":"Sd","y":"Sa"})
+    plot_Sd_Sa.data = []
+    plot_Sd_Sa.update_layout(showlegend=False)
+    plot_Sd_Sa.add_scatter(x=Sd,y=Sa,mode="lines",name="Sd vs Sa")
+    v_Sa_1 = Z*U*2.5*S*9.81/R
+    v_Sd_1 = ((Tp**2)/(4*pi**2))*v_Sa_1
+    v_Sa_2 = Z*U*(2.5*Tp/Tl)*S*9.81/R
+    v_Sd_2 = ((Tl**2)/(4*pi**2))*v_Sa_2
+    plot_Sd_Sa.add_scatter(x=[0,1.1*v_Sd_1],y=[0,1.1*v_Sa_1],mode="lines",line={"dash":"dash"},name="Tp")
+    plot_Sd_Sa.add_scatter(x=[0,1.1*v_Sd_2],y=[0,1.1*v_Sa_2],mode="lines",line={"dash":"dash"},name="Tl")
+    st.plotly_chart(plot_Sd_Sa,use_container_width=True)
