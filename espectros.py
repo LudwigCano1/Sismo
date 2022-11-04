@@ -23,8 +23,6 @@ def espectros(Z,U,S,R,Tp,Tl):
         Sv[i]=((T[i])/(2*pi))*Sa[i]
     return Sa,Sd,Sv,T,C
 
-
-
 # Definición de valores de la norma
 
 zonas = {"Z4":0.45,"Z3":0.35,"Z2":0.25,"Z1":0.1}
@@ -93,6 +91,10 @@ with T1:
     plot_C.add_scatter(x=[Tp,Tp],y=[0,1.1*max(C)],mode="lines",line={"dash":"dash"},name="Tp")
     plot_C.add_scatter(x=[Tl,Tl],y=[0,1.1*max(C)],mode="lines",line={"dash":"dash"},name="Tl")
     st.plotly_chart(plot_C,use_container_width=True)
+    file = ""
+    for i in range(len(T)):
+        file += f"{T[i]:.2f}\t{C[i]:.2f}\n"
+    st.download_button("Descargar T vs C",file,"T_vs_C.txt")
 
 with T2:
     plot_Sa = px.line(x=[0],y=[0],labels={"x":"T (s)","y":"Sa"})
@@ -102,6 +104,10 @@ with T2:
     plot_Sa.add_scatter(x=[Tp,Tp],y=[0,1.1*max(Sa)],mode="lines",line={"dash":"dash"},name="Tp")
     plot_Sa.add_scatter(x=[Tl,Tl],y=[0,1.1*max(Sa)],mode="lines",line={"dash":"dash"},name="Tl")
     st.plotly_chart(plot_Sa,use_container_width=True)
+    file = ""
+    for i in range(len(T)):
+        file += f"{T[i]:.2f}\t{Sa[i]:.2f}\n"
+    st.download_button("Descargar T vs Sa",file,"T_vs_Sa.txt")
 
 with T3:
     plot_Sv = px.line(x=[0],y=[0],labels={"x":"T (s)","y":"Sv"})
@@ -111,6 +117,10 @@ with T3:
     plot_Sv.add_scatter(x=[Tp,Tp],y=[0,1.1*max(Sv)],mode="lines",line={"dash":"dash"},name="Tp")
     plot_Sv.add_scatter(x=[Tl,Tl],y=[0,1.1*max(Sv)],mode="lines",line={"dash":"dash"},name="Tl")
     st.plotly_chart(plot_Sv,use_container_width=True)
+    file = ""
+    for i in range(len(T)):
+        file += f"{T[i]:.2f}\t{Sv[i]:.2f}\n"
+    st.download_button("Descargar T vs Sv",file,"T_vs_Sv.txt")
 
 with T4:
     plot_Sd = px.line(x=[0],y=[0],labels={"x":"T (s)","y":"Sd"})
@@ -120,6 +130,10 @@ with T4:
     plot_Sd.add_scatter(x=[Tp,Tp],y=[0,1.1*max(Sd)],mode="lines",line={"dash":"dash"},name="Tp")
     plot_Sd.add_scatter(x=[Tl,Tl],y=[0,1.1*max(Sd)],mode="lines",line={"dash":"dash"},name="Tl")
     st.plotly_chart(plot_Sd,use_container_width=True)
+    file = ""
+    for i in range(len(T)):
+        file += f"{T[i]:.2f}\t{Sd[i]:.2f}\n"
+    st.download_button("Descargar T vs Sd",file,"T_vs_Sd.txt")
 
 with T5:
     plot_Sd_Sa = px.line(x=[0],y=[0],labels={"x":"Sd","y":"Sa"})
@@ -133,3 +147,7 @@ with T5:
     plot_Sd_Sa.add_scatter(x=[0,1.1*v_Sd_1],y=[0,1.1*v_Sa_1],mode="lines",line={"dash":"dash"},name="Tp")
     plot_Sd_Sa.add_scatter(x=[0,1.1*v_Sd_2],y=[0,1.1*v_Sa_2],mode="lines",line={"dash":"dash"},name="Tl")
     st.plotly_chart(plot_Sd_Sa,use_container_width=True)
+    file = ""
+    for i in range(len(T)):
+        file += f"{Sd[i]:.2f}\t{Sa[i]:.2f}\n"
+    st.download_button("Descargar Sd vs Sa",file,"Sd_vs_Sa.txt")
