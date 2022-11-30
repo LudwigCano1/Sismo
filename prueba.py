@@ -1,14 +1,13 @@
 import streamlit as st
 from openpyxl import Workbook
+from tempfile import NamedTemporaryFile
+from io import BytesIO
 
 wb = Workbook()
-
 wb.create_sheet("Hoja_A",0)
 
-direc = st.text_input("Dirección:")
-filename = st.text_input("Nombre de archivo:")
-n = direc+"\\"+filename+".xlsx"
-print(n)
+with NamedTemporaryFile() as tmp:
+    wb.save(tmp.name)
+    data = BytesIO(tmp.read())
 
-if st.button("Descargar"):
-    wb.save("Hola.xlsx")
+st.download_button("Descargar",data=data,mime="xlsx",file_name="gato.xlsx")
