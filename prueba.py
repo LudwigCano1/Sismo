@@ -2,6 +2,7 @@ import streamlit as st
 from openpyxl import Workbook
 from tempfile import NamedTemporaryFile
 from io import BytesIO
+import pyautogui
 
 wb = Workbook()
 wb.create_sheet("Hoja_A",0)
@@ -11,3 +12,6 @@ with NamedTemporaryFile() as tmp:
     data = BytesIO(tmp.read())
 
 st.download_button("Descargar",data=data,mime="xlsx",file_name="gato.xlsx")
+
+if st.button("PDF"):
+    pyautogui.hotkey('ctrl', 'p')
