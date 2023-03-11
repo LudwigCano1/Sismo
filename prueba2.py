@@ -26,9 +26,8 @@ def create_frame(t):
                     transparent = False,  
                     facecolor = 'white'
                 )
-        data = BytesIO(tmp.read())
-    plt.close()
-    return data
+        plt.close()
+        return tmp
 
 frames = []
 for t in time:
