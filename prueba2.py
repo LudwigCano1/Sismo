@@ -27,7 +27,7 @@ def create_frame(t):
                     facecolor = 'white'
                 )
         plt.close()
-        return tmp
+        return tmp.name
 
 frames = []
 for t in time:
@@ -37,6 +37,4 @@ with NamedTemporaryFile() as tmp:
     imageio.mimsave(tmp.name, # output gif
                     frames,          # array of input frames
                     fps = 5)         # optional: frames per second
-    data = BytesIO(tmp.read())
-
-st.image(data)
+    st.image(tmp.name)
