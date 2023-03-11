@@ -1,3 +1,5 @@
 plotly_express
 openpyxl
 pyautogui
+matplotlib
+imageio
