@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.express as px
 import imageio
 
-FPS = 20
+FPS = 10
 
 lista_m = []
 lista_k = []
