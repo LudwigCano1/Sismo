@@ -21,16 +21,14 @@ for t in time:
     plt.ylabel('y', fontsize = 14)
     plt.title(f'Relationship between x and y at step {t}',
               fontsize=14)
-    with NamedTemporaryFile() as tmp:
-        plt.savefig(tmp.name, 
-                    transparent = False,  
-                    facecolor = 'white'
-                )
-        plt.close()
-        frames.append(imageio.v2.imread(tmp.name))
+    plt.savefig('ex.png', 
+                transparent = False,  
+                facecolor = 'white'
+            )
+    plt.close()
+    frames.append(imageio.v2.imread('ex.png'))
 
-with NamedTemporaryFile() as tmp:
-    imageio.mimsave(tmp.name, # output gif
-                    frames,          # array of input frames
-                    fps = 5)         # optional: frames per second
-    st.image(tmp.name)
+imageio.mimsave('gato.gif', # output gif
+                frames,          # array of input frames
+                fps = 5)         # optional: frames per second
+st.image('gato.gif')
